@@ -85,8 +85,8 @@ typedef struct
 ========================================================================
 */
 
-#define IDALIASHEADER		(('2'<<24)+('P'<<16)+('D'<<8)+'I')
-#define ALIAS_VERSION	8
+#define IDMD2HEADER		(('2'<<24)+('P'<<16)+('D'<<8)+'I')
+#define MD2_VERSION	8
 
 #define	MAX_TRIANGLES	4096
 #define MAX_VERTS		2048
@@ -164,6 +164,59 @@ typedef struct
 /*
 ========================================================================
 
+.MDX triangle model file format
+
+========================================================================
+*/
+#define IDMDXHEADER		(('X'<<24)+('P'<<16)+('D'<<8)+'I')
+#define MDX_VERSION	4
+
+#define	MDX_MAX_TRIANGLES	4096
+#define MDX_MAX_VERTS		2048
+#define MDX_MAX_FRAMES		1024
+#define MDX_MAX_MD2SKINS	32
+#define	MDX_MAX_SKINNAME	64
+
+typedef struct
+{
+	short	index_xyz[3];
+	short	index_st[3];
+} dxtriangle_t;
+
+typedef struct
+{
+	int			ident;
+	int			version;
+
+	int			skinwidth;
+	int			skinheight;
+	int			framesize;		// byte size of each frame
+
+	int			num_skins;
+	int			num_xyz;
+	int			num_tris;
+	int			num_glcmds;		// dwords in strip/fan command list
+	int			num_frames;
+	int			num_sfxdef;
+	int			num_sfxent;
+	int			num_sfxobj;
+
+	int			ofs_skins;		// each skin is a MAX_SKINNAME string
+	int			ofs_tris;		// offset for dtriangles
+	int			ofs_frames;		// offset for first frame
+	int			ofs_glcmds;
+	int			ofs_vertexi;
+	int			ofs_sfxdef;
+	int			ofs_sfxent;
+	int			ofs_sfxbbox;
+	int			ofs_dummyend;	//FREDZ same as offsetEnd
+	int			ofs_end;		// end of file
+
+} dmdxl_t;
+
+/*
+========================================================================
+
 .SP2 sprite file format
 
 ========================================================================
@@ -234,7 +287,7 @@ typedef struct miptex_s
 #define	MAX_MAP_TEXINFO		8192
 
 #define	MAX_MAP_AREAS		256
-#define	MAX_MAP_AREAPORTALS	1024
+#define	MAX_MAP_AREAPORTALS	4096//FREDZ Kingpin was 1024
 #define	MAX_MAP_PLANES		65536
 #define	MAX_MAP_NODES		65536
 #define	MAX_MAP_BRUSHSIDES	65536
@@ -339,7 +392,8 @@ typedef struct
 #define	CONTENTS_SLIME			16
 #define	CONTENTS_WATER			32
 #define	CONTENTS_MIST			64
-#define	LAST_VISIBLE_CONTENTS	64
+#define	CONTENTS_FENCE		   128 //FREDZ Kingpin called CONTENTS_ALPHA in q_shared.h
+#define	LAST_VISIBLE_CONTENTS  128 //FREDZ Kingpin was 64 in Q2 in Kingpin 128 in q_shared.h
 
 // remaining contents are non-visible, and don't eat brushes
 
@@ -376,11 +430,31 @@ typedef struct
 #define	SURF_TRANS66	0x20
 #define	SURF_FLOWING	0x40	// scroll towards angle
 #define	SURF_NODRAW		0x80	// don't bother referencing the texture
+//#define	SURF_BURNT		0x100	//FREDZ Kingpin in Q_SHARED.h but used by SURF_HINT
 
 #define	SURF_HINT		0x100	// make a primary bsp splitter
 #define	SURF_SKIP		0x200	// completely ignore, allowing non-closed brushes
 
+//FREDZ Kingpin some of this info is also in q_shared.h
+#define SURF_SPECULAR  	0x400  // Ridah, shows specular lighting from light flares
+#define SURF_DIFFUSE  	0x800  // Ridah, used with specular lighting, makes it bigger and less intense
+#define SURF_ALPHA  	0x1000
+#define SURF_MIRROR  	0x2000
+#define SURF_WNDW33  	0x4000
+#define SURF_WNDW66  	0x8000
 
+#define SURF_WATER  	    0x80000
+#define SURF_CONCRETE 	    0x100000
+#define SURF_FABRIC 	    0x200000
+#define SURF_GRAVEL 	    0x400000
+#define SURF_METAL   	    0x800000
+#define SURF_METAL_L 	    0x1000000
+#define SURF_TIN    	    0x2000000//FREDZ or is this SURF_TIN, SURF_SNOW called in Q_SHARED.h but TIN in radiant.
+#define SURF_TILE     	    0x4000000
+#define SURF_WOOD     	    0x8000000
+#define SURF_REFLECT_FAKE   0x10000000  // Ridah, uses fast (fake) reflections
+#define SURF_REFLECT_LIGHT  0x20000000  // Ridah, only reflects SURF_LIGHT surfaces
+//FREDZ kingpin end
 
 typedef struct
 {
