@@ -406,6 +406,21 @@ void ParseScript (void)
 			Cmd_Skin ();
 		else if (!strcmp (token, "$skinsize"))
 			Cmd_Skinsize ();
+		//FREDZ start
+		//
+		// mdx commands
+		//
+		else if (!strcmp (token, "$mdx"))
+			Cmd_MDX ();
+		else if (!strcmp (token, "$sfx_load"))
+			Cmd_Sfx_Load ();
+		else if (!strcmp (token, "$sfx_save"))
+			Cmd_Sfx_Save ();
+        else if ( !strcmp(token, "$sfx_add") )
+            Cmd_Sfx_Add();
+        else if (!strcmp (token, "$sfx_define"))
+			Cmd_Sfx_Define ();
+        //FREDZ end
 		//
 		// sprite commands
 		//
