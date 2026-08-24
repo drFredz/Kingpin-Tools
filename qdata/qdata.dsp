@@ -117,6 +117,10 @@ SOURCE=.\models.c
 # End Source File
 # Begin Source File
 
+SOURCE=.\models_mdx.c
+# End Source File
+# Begin Source File
+
 SOURCE=.\qdata.c
 # End Source File
 # Begin Source File
