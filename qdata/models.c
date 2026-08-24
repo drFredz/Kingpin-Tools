@@ -141,8 +141,8 @@ void WriteModelFile (FILE *modelouthandle)
 	float			v;
 	int				c_on, c_off;
 
-	model.ident = IDALIASHEADER;
-	model.version = ALIAS_VERSION;
+	model.ident = IDMD2HEADER;
+	model.version = MD2_VERSION;
 	model.framesize = (int)&((daliasframe_t *)0)->verts[model.num_xyz];
 	model.num_glcmds = numcommands;
 	model.ofs_skins = sizeof(dmdl_t);
