@@ -34,7 +34,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <libc.h>
 #endif
 
-#define	BASEDIRNAME	"quake2"
+//FREDZ Kingpin Changed aldo not used.
+//#define	BASEDIRNAME	"quake2"
+#define	BASEDIRNAME	"kingpin"
 #define PATHSEPERATOR   '/'
 
 // set these before calling CheckParm
@@ -194,11 +196,13 @@ void SetQdirFromPath (char *path)
 	{	// path is partial
 		Q_getwd (temp);
 		strcat (temp, path);
-		path = temp;
+//		path = temp;//FREDZ Q2
 	}
-
+	else//FREDZ Kingpin
+        strcpy(temp, path);
+	
 	// search for "quake2" in path
-
+/* //FREDZ Quake2 only
 	len = strlen(BASEDIRNAME);
 	for (c=path+strlen(path)-1 ; c != path ; c--)
 		if (!Q_strncasecmp (c, BASEDIRNAME, len))
@@ -219,7 +223,7 @@ void SetQdirFromPath (char *path)
 			Error ("No gamedir in %s", path);
 			return;
 		}
-	Error ("SetQdirFromPath: no '%s' in %s", BASEDIRNAME, path);
+	Error ("SetQdirFromPath: no '%s' in %s", BASEDIRNAME, path);*/
 }
 
 char *ExpandArg (char *path)
