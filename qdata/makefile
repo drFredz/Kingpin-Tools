@@ -48,6 +48,9 @@ $(ODIR)/qdata.o : qdata.c
 $(ODIR)/models.o : models.c
 	cc $(CFLAGS) -E $? | tr -d '\015' > /tmp/temp.i
 	cc $(CFLAGS) -o $@ /tmp/temp.i
+$(ODIR)/models.o : models_mdx.c
+	cc $(CFLAGS) -E $? | tr -d '\015' > /tmp/temp.i
+	cc $(CFLAGS) -o $@ /tmp/temp.i
 $(ODIR)/sprites.o : sprites.c
 	cc $(CFLAGS) -E $? | tr -d '\015' > /tmp/temp.i
 	cc $(CFLAGS) -o $@ /tmp/temp.i
