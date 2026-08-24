@@ -11,7 +11,7 @@ CFG=bspinfo3 - Win32 Debug
 !IF "$(CFG)" != "bsp - Win32 Release" && "$(CFG)" != "bsp - Win32 Debug" &&\
  "$(CFG)" != "qbsp3 - Win32 Release" && "$(CFG)" != "qbsp3 - Win32 Debug" &&\
  "$(CFG)" != "qvis3 - Win32 Release" && "$(CFG)" != "qvis3 - Win32 Debug" &&\
- "$(CFG)" != "qrad3 - Win32 Release" && "$(CFG)" != "qrad3 - Win32 Debug" &&\
+# "$(CFG)" != "qrad3 - Win32 Release" && "$(CFG)" != "qrad3 - Win32 Debug" &&\
  "$(CFG)" != "bspinfo3 - Win32 Release" && "$(CFG)" != "bspinfo3 - Win32 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
@@ -27,8 +27,8 @@ CFG=bspinfo3 - Win32 Debug
 !MESSAGE "qbsp3 - Win32 Debug" (based on "Win32 (x86) Console Application")
 !MESSAGE "qvis3 - Win32 Release" (based on "Win32 (x86) Console Application")
 !MESSAGE "qvis3 - Win32 Debug" (based on "Win32 (x86) Console Application")
-!MESSAGE "qrad3 - Win32 Release" (based on "Win32 (x86) Console Application")
-!MESSAGE "qrad3 - Win32 Debug" (based on "Win32 (x86) Console Application")
+#!MESSAGE "qrad3 - Win32 Release" (based on "Win32 (x86) Console Application")
+#!MESSAGE "qrad3 - Win32 Debug" (based on "Win32 (x86) Console Application")
 !MESSAGE "bspinfo3 - Win32 Release" (based on\
  "Win32 (x86) Console Application")
 !MESSAGE "bspinfo3 - Win32 Debug" (based on "Win32 (x86) Console Application")
