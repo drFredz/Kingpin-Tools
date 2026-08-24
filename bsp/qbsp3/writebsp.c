@@ -366,7 +366,8 @@ void SetLightStyles (void)
 		e = &entities[i];
 
 		t = ValueForKey (e, "classname");
-		if (Q_strncasecmp (t, "light", 5))
+//		if (Q_strncasecmp (t, "light", 5))//Q2
+		if (Q_strncasecmp(t, "light", 5) && Q_strncasecmp(t, "junior", 6))//FREDZ Kingpin added junior
 			continue;
 		t = ValueForKey (e, "targetname");
 		if (!t[0])
