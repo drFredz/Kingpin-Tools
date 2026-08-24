@@ -51,6 +51,14 @@ void FinishModel (void);
 
 void Cmd_Inverse16Table( void );
 
+//FREDZ Kingpin start
+void Cmd_MDX (void);
+void Cmd_Sfx_Load (void);
+void Cmd_Sfx_Save (void);
+void Cmd_Sfx_Add (void);
+void Cmd_Sfx_Define (void);
+//FREDZ Kingpin end
+
 void Cmd_SpriteName (void);
 void Cmd_Load (void);
 void Cmd_SpriteFrame (void);
