@@ -325,6 +325,21 @@ int	BrushContents (mapbrush_t *b)
 		}
 	}
 
+	//FREDZ Kingpin flags
+	if (trans & SURF_ALPHA)
+	{
+		contents |= CONTENTS_TRANSLUCENT;
+		if (contents & CONTENTS_SOLID)
+		{
+			contents &= ~CONTENTS_SOLID;
+			contents |= (CONTENTS_WINDOW | CONTENTS_FENCE);
+		}
+	}
+
+	if (trans & SURF_MIRROR)//FREDZ seems abit useless but Kingpin.
+		contents |= 0x40000000u;
+	//FREDZ END
+	
 	return contents;
 }
 
