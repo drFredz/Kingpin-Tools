@@ -220,6 +220,11 @@ void SwapBSPFile (qboolean todisk)
 		texinfo[i].flags = LittleLong (texinfo[i].flags);
 		texinfo[i].value = LittleLong (texinfo[i].value);
 		texinfo[i].nexttexinfo = LittleLong (texinfo[i].nexttexinfo);
+		if (todisk)//FREDZ hypov8 save bsp file with lower case textures
+		{
+			texinfo[i].texture[31] = '\0'; //just incase
+			strlower(texinfo[i].texture);
+		}
 	}
 
 //
